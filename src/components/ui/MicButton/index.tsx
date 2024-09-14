@@ -3,20 +3,16 @@ import MicIcon from "@mui/icons-material/Mic";
 import style from "./index.module.css";
 import clsx from "clsx";
 
-type ButtonProps = {} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = {
+  setAudioFile: (file: File) => void;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const MicButton: React.FC<ButtonProps> = () => {
+export const MicButton: React.FC<ButtonProps> = ({
+  setAudioFile,
+}: ButtonProps) => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
-  const audioElementRef = useRef<HTMLAudioElement | null>(null);
   const [isRecording, setIsRecording] = useState<boolean>(false);
-
-  useEffect(() => {
-    // 初期レンダリング時に audio タグを取得
-    audioElementRef.current = document.getElementById(
-      "audio"
-    ) as HTMLAudioElement;
-  }, []);
 
   const voiceRecodeStart = () => {
     chunksRef.current = [];
@@ -40,20 +36,21 @@ export const MicButton: React.FC<ButtonProps> = () => {
       const constraints = {
         audio: true,
         video: false,
-        mineType: "audio/webm; codecs=opus",
+        mineType: "audio/ogg",
       };
 
       try {
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         mediaRecorderRef.current = new MediaRecorder(stream);
         mediaRecorderRef.current.ondataavailable = (e) => {
-          // 録音データを audio タグにセット
           chunksRef.current.push(e.data);
           const blob = new Blob(chunksRef.current, {
-            type: "audio/webm; codecs=opus",
+            type: "audio/ogg",
           });
-          const url = URL.createObjectURL(blob);
-          audioElementRef.current!.src = url;
+          const file = new File([blob], "voice.ogg", {
+            type: "audio/ogg",
+          });
+          setAudioFile(file);
         };
         voiceRecodeStart();
       } catch (error) {
@@ -77,16 +74,12 @@ export const MicButton: React.FC<ButtonProps> = () => {
   return (
     <>
       <button
-        className={clsx(style["mic-button-style"], {
-          [style["recording"]]: isRecording,
-        })}
+        className={clsx(style["mic-button-style"])}
+        data-is-recording={isRecording}
         onClick={clickHandle}
       >
         <MicIcon className={clsx(style["mic-icon"])} />
       </button>
-      <figure>
-        <audio controls id="audio"></audio>
-      </figure>
     </>
   );
 };

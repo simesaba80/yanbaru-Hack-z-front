@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { MicButton } from "@/components/ui/MicButton";
 import { VoicePlayer } from "@/components/ui/VoicePlayer";
 
-export const Signin: React.FC = () => {
+export const SignUp: React.FC = () => {
   const audioFileRef = useRef<File | null>(null);
   const [audioFile, setAudioFile] = useState<File | null>(null);
 
