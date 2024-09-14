@@ -1,14 +1,15 @@
 .title-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 15px;
   text-align: center;
+  gap: 15px;
   padding: 50px 30px;
 }
 
 .window-style {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 80%;
   max-width: 500px;
   gap: 15px;
