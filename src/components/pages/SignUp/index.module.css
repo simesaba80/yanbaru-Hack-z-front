@@ -20,6 +20,23 @@
 }
 
 .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  padding: 0 20px;
+  gap: 15px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    background: var(--liner-gradient-lighten);
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--brown-lighten);
+    border-radius: 9999px;
+  }
 }
 
 .recorder-wrapper {
