@@ -1,0 +1,29 @@
+.button-style {
+  background: var(--brown-lighten);
+  color: var(--white);
+  cursor: pointer;
+  padding: 16px 32px;
+  width: 100%;
+  font-size: 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 1s ease-out;
+
+  &[data-shape="square"] {
+    border-radius: 8px;
+  }
+
+  &[data-shape="ends-round"] {
+    border-radius: 9999px;
+  }
+
+  &:disabled {
+    background-color: var(--brown-lighten);
+    border: 3px solid var(--brown-lighten);
+    color: var(--white);
+  }
+
+  &:hover {
+    background: var(--liner-gradient);
+  }
+}
