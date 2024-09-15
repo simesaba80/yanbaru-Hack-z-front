@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { MicButton } from "@/components/ui/MicButton";
 import { VoicePlayer } from "@/components/ui/VoicePlayer";
 import { TextInput } from "@/components/ui/TextInput";
+import { ReturnButton } from "@/components/ui/ReturnButton";
 
 export const SignUp: React.FC = () => {
   const router = useRouter();
@@ -155,6 +156,7 @@ export const SignUp: React.FC = () => {
 
         <Button onClick={submitData}>登録</Button>
       </div>
+      <ReturnButton />
     </>
   );
 };

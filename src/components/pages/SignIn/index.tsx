@@ -4,6 +4,7 @@ import style from "./index.module.css";
 import clsx from "clsx";
 import { Button } from "@/components/ui/Button";
 import { TextInput } from "@/components/ui/TextInput";
+import { ReturnButton } from "@/components/ui/ReturnButton";
 
 export const SignIn: React.FC = () => {
   const router = useRouter();
@@ -82,6 +83,7 @@ export const SignIn: React.FC = () => {
         </div>
         <Button onClick={submitData}>サインイン</Button>
       </div>
+      <ReturnButton />
     </>
   );
 };

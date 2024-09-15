@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import MicIcon from "@mui/icons-material/Mic";
 import style from "./index.module.css";
 import clsx from "clsx";

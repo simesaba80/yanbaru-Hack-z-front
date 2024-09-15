@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { MicButton } from "@/components/ui/MicButton";
 import { VoicePlayer } from "@/components/ui/VoicePlayer";
 import { TextInput } from "@/components/ui/TextInput";
+import { ReturnButton } from "@/components/ui/ReturnButton";
 
 export const AccountSetting: React.FC = () => {
   const router = useRouter();
@@ -54,6 +55,7 @@ export const AccountSetting: React.FC = () => {
 
         <Button onClick={submitData}>変更</Button>
       </div>
+      <ReturnButton />
     </>
   );
 };

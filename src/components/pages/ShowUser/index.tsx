@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { ColorDisplay } from "@/components/ui/ColorDisplay";
 import { useParams } from "next/navigation";
+import { ReturnButton } from "@/components/ui/ReturnButton";
 
 type UserColor = {
   id: number;
@@ -71,6 +72,7 @@ export const ShowUser: React.FC = () => {
           <h1 className={clsx(style["loading-message"])}>読み込み中</h1>
         </>
       )}
+      <ReturnButton />
     </>
   );
 };
