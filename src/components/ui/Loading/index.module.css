@@ -1,0 +1,40 @@
+.circle-spin-4 {
+  --size: 200px;
+  --stroke-width: calc(var(--size) / 6);
+  --color: currentColor;
+  --animation-duration: 1s;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+}
+
+.circle-spin-4::before,
+.circle-spin-4::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-width: var(--stroke-width);
+  border-style: solid;
+  border-color: var(--color) var(--color) transparent transparent;
+  border-radius: 50%;
+  transform: rotate(0deg);
+  animation: var(--animation-duration) infinite circle-spin-4-animation;
+}
+
+.circle-spin-4::before {
+  animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+}
+
+.circle-spin-4::before {
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes circle-spin-4-animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

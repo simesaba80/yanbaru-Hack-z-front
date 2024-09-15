@@ -4,11 +4,13 @@ import clsx from "clsx";
 
 type TextInputProps = {
   children: React.ReactNode;
+  isIncorrect?: boolean;
   setValue: (string: string) => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export const TextInput: React.FC<TextInputProps> = ({
   children,
+  isIncorrect,
   setValue,
   ...props
 }) => {
@@ -16,7 +18,10 @@ export const TextInput: React.FC<TextInputProps> = ({
     <>
       <div>
         <h2>{children}</h2>
-        <span className={clsx(style["input-wrapper"])}>
+        <span
+          className={clsx(style["input-wrapper"])}
+          data-incorrect={isIncorrect}
+        >
           <input
             className={clsx(style["input-style"])}
             type="text"

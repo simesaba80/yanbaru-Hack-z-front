@@ -1,0 +1,19 @@
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
+  padding: 50px 30px;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 500px;
+  gap: 15px;
+  border: 2px solid var(--brown-lighten);
+  border-radius: 8px;
+  padding: 50px 30px;
+  background: rgba(256, 256, 256, 0.6);
+}

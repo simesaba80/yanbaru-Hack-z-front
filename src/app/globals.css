@@ -18,6 +18,7 @@
     var(--orange-lighten)
   );
   --liner-gradient: linear-gradient(45deg, var(--blue), var(--orange));
+  --red: #ee5555;
   --white: #ffffff;
   --background: var(--liner-gradient-lighten);
   --foreground: var(--brown-lighten);
