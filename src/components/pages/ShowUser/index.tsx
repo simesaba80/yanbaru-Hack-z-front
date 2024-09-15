@@ -19,6 +19,7 @@ type UserData = {
 export const ShowUser: React.FC = () => {
   const { id } = useParams();
   const [colorData, setColorData] = useState<UserColor | null>(null);
+  const [yourColor, setYourColor] = useState<UserColor | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
@@ -26,6 +27,11 @@ export const ShowUser: React.FC = () => {
       id: 1,
       color1: "#ff0000",
       color2: "#0000ff",
+    });
+    setYourColor({
+      id: 2,
+      color1: "#ff0e0e",
+      color2: "#0eeeaf",
     });
     setUserData({
       id: 1,
@@ -35,16 +41,28 @@ export const ShowUser: React.FC = () => {
 
   return (
     <>
-      {colorData && userData ? (
+      {colorData && userData && yourColor ? (
         <>
           <div className={clsx(style["title-wrapper"])}>
-            <h1>お見合い</h1>
-            <p>色が似ている人があなたのエイサーとピッタリです</p>
+            <h1>{userData.name}のページ</h1>
           </div>
 
           <div className={clsx(style["window-style"])}>
-            <p>{userData.name}の色</p>
-            <ColorDisplay color1={colorData.color1} color2={colorData.color2} />
+            <div className={clsx(style["your-color"])}>
+              <ColorDisplay
+                color1={yourColor.color1}
+                color2={yourColor.color2}
+              />
+              <h2>あなたの色</h2>
+            </div>
+
+            <div className={clsx(style["user-color"])}>
+              <ColorDisplay
+                color1={colorData.color1}
+                color2={colorData.color2}
+              />
+              <h2>{userData.name}の色</h2>
+            </div>
           </div>
         </>
       ) : (
