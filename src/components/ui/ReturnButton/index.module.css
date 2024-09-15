@@ -4,6 +4,9 @@
   left: 30px;
   width: 80px;
   height: 80px;
+  &:hover {
+    color: var(--light-brown);
+  }
 }
 
 .back-icon {
