@@ -3,6 +3,7 @@ import Link from "next/link";
 import style from "./index.module.css";
 import clsx from "clsx";
 import { Button } from "@/components/ui/Button";
+import { ColorDisplay } from "@/components/ui/ColorDisplay";
 
 export const Top: React.FC = () => {
   return (

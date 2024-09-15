@@ -15,7 +15,6 @@ export const VoicePlayer: React.FC<VoicePlayerProps> = ({
       "audio"
     ) as HTMLAudioElement;
     if (audioFile) {
-      console.log("done");
       const url = URL.createObjectURL(audioFile);
       audioElementRef.current!.src = url;
       audioElementRef.current.style.display = "block";

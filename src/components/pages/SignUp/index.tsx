@@ -10,7 +10,6 @@ import { TextInput } from "@/components/ui/TextInput";
 
 export const SignUp: React.FC = () => {
   const router = useRouter();
-  const audioFileRef = useRef<File | null>(null);
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -77,13 +76,37 @@ export const SignUp: React.FC = () => {
       alert("エイサーを録音してください");
       return;
     }
+    await strageAudioFile();
     alert("登録しました");
     router.push("/home");
   };
 
-  useEffect(() => {
-    console.log(audioFileRef);
-  }, [audioFileRef]);
+  const strageAudioFile = async () => {
+    const fileName = "hoge.ogg";
+    const signedGcsUrl =
+      "https://storage.googleapis.com/yanbaru-eisa-storage-bucket-prod/test.ogg?x-goog-signature=168dc009152147b8306fe69a0938e4b7da7acb184dc3d0161488d29ed96c359dbbc4066a36690b83b0a185cef430700313b8e3586186abfb635eef4cd40c3009d560514ea3302a4175f39fee7cd7e0a3bd9ec3bdd4676d059d86f1811c9bcf55fdefd67e1617da5d8fdcf9445e752a247160e2fcb70e25d470619b7eeeabee954f40973ed8f959ddc06bd83ea26aa4c77c05dcd4402fc6b2fdefc0f0b905235c6185f03b861af1162f6ae29b5e9ecbf55410a4f984b69234b042b56ecd91a737ea0a34a46d348343a9d9c0da6d315fe8b50d99c3ee36c235e57c488537740fa370b47fee21c2caa82f29064abb1e58034ddae3ca28113dba82520bf2a0a72ee8&x-goog-algorithm=GOOG4-RSA-SHA256&x-goog-credential=yanbaru-eisa-hoge-prod%40yanbaru-eisa.iam.gserviceaccount.com%2F20240915%2Fasia-northeast1%2Fstorage%2Fgoog4_request&x-goog-date=20240915T081840Z&x-goog-expires=3600&x-goog-signedheaders=content-type%3Bhost";
+    if (audioFile) {
+      const newFile = new File([audioFile], fileName, {
+        type: audioFile.type,
+        lastModified: audioFile.lastModified,
+      });
+      const data = await fetch(signedGcsUrl, {
+        method: "PUT",
+        body: newFile,
+      });
+      if (data.ok) {
+        console.log("success");
+        router.push("/home");
+      } else {
+        console.log("failed");
+        alert("登録に失敗しました");
+      }
+    } else {
+      console.log("no file");
+      alert("エイサーの音声が見つかりません");
+    }
+  };
+
   return (
     <>
       <div className={clsx(style["title-wrapper"])}>
