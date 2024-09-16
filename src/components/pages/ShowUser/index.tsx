@@ -17,6 +17,19 @@ type UserData = {
   name: string;
 };
 
+const userColors: UserColor[] = [
+  { id: 1, color1: "#FF5733", color2: "#33FF57" },
+  { id: 2, color1: "#3357FF", color2: "#FF33A1" },
+  { id: 3, color1: "#A133FF", color2: "#33FFF5" },
+  { id: 4, color1: "#FF33D4", color2: "#33FF8A" },
+  { id: 5, color1: "#FF8A33", color2: "#5733FF" },
+  { id: 6, color1: "#33FFBD", color2: "#FF5733" },
+  { id: 7, color1: "#5733FF", color2: "#33A1FF" },
+  { id: 8, color1: "#FF33A1", color2: "#A133FF" },
+  { id: 9, color1: "#33FFF5", color2: "#FF33D4" },
+  { id: 10, color1: "#33FF8A", color2: "#FF8A33" },
+];
+
 export const ShowUser: React.FC = () => {
   const { id } = useParams();
   const [colorData, setColorData] = useState<UserColor | null>(null);
@@ -25,18 +38,18 @@ export const ShowUser: React.FC = () => {
 
   useEffect(() => {
     setColorData({
-      id: 1,
-      color1: "#ff0000",
-      color2: "#0000ff",
+      id: id as number,
+      color1: userColors[(id as number) - 1].color1,
+      color2: userColors[(id as number) - 1].color2,
     });
     setYourColor({
       id: 2,
-      color1: "#ff0e0e",
-      color2: "#0eeeaf",
+      color1: "#ff0000",
+      color2: "#0000ff",
     });
     setUserData({
       id: 1,
-      name: "Semikoron",
+      name: `Test User${id}`,
     });
   }, [id]);
 
